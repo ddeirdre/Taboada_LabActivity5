@@ -1,7 +1,5 @@
 package FoodOrdering;
 
-import LeapYear.LeapYearGUI;
-
 import javax.swing.*;
 
 public class FoodOrderGUI extends JFrame {
@@ -19,6 +17,7 @@ public class FoodOrderGUI extends JFrame {
     private JRadioButton rb15;
 
     public FoodOrderGUI() {
+
         setTitle("Food Ordering System");
         ButtonGroup bg = new ButtonGroup();
         bg.add(rbNone);
@@ -26,6 +25,7 @@ public class FoodOrderGUI extends JFrame {
         bg.add(rb10);
         bg.add(rb15);
             btnOrder.addActionListener((event) -> {
+                try {
                 double price = 0.0;
                 if (cPizza.isSelected()) price += 100;
                 if (cBurger.isSelected()) price += 80;
@@ -36,8 +36,14 @@ public class FoodOrderGUI extends JFrame {
                 if (rb5.isSelected()) price -= price * 0.05;
                 else if (rb10.isSelected()) price -= price * 0.10;
                 else if (rb15.isSelected()) price -= price * 0.15;
+                    if (price==0) {
+                        throw new IllegalArgumentException();
+                    }
 
                 JOptionPane.showMessageDialog(panel1, "The total price is Php " + String.format("%.2f", price));
+                }catch (IllegalArgumentException mugna){
+                    JOptionPane.showMessageDialog(FoodOrderGUI.this, "Please pick an order.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
                 });
                     setLocationRelativeTo(null);
                     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
