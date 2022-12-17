@@ -28,7 +28,7 @@ public class LeapYearGUI extends JFrame{
                     String message = isLeapYear ? "Leap year" : "Not a leap year";
                     JOptionPane.showMessageDialog(null, message);
 
-                }catch (NumberFormatException lot) {
+                }catch (NumberFormatException bout2) {
                         JOptionPane.showMessageDialog(null, "Please input a valid year.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
 
